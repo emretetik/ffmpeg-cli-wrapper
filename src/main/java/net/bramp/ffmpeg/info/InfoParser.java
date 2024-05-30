@@ -23,10 +23,10 @@ public final class InfoParser {
             if (line.startsWith("NAME") || line.isEmpty()) {
                 // Skip header and empty lines
                 continue;
-            } else if (line.equals("Individual channels:")) {
+            } else if ("Individual channels:".equals(line)) {
                 parsingIndividualChannels = true;
                 parsingChannelLayouts = false;
-            } else if (line.equals("Standard channel layouts:")) {
+            } else if ("Standard channel layouts:".equals(line)) {
                 parsingIndividualChannels = false;
                 parsingChannelLayouts = true;
             } else if (parsingIndividualChannels) {

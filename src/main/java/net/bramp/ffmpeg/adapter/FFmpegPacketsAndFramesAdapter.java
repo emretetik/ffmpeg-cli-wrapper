@@ -13,7 +13,7 @@ public class FFmpegPacketsAndFramesAdapter implements JsonDeserializer<FFmpegFra
     if (jsonElement instanceof JsonObject) {
       final String objectType = ((JsonObject) jsonElement).get("type").getAsString();
 
-      if (objectType.equals("packet")) {
+      if ("packet".equals(objectType)) {
         return jsonDeserializationContext.deserialize(jsonElement, FFmpegPacket.class);
       } else {
         return jsonDeserializationContext.deserialize(jsonElement, FFmpegFrame.class);

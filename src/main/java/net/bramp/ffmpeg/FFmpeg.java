@@ -170,9 +170,9 @@ public class FFmpeg extends FFcommon {
           // (?<inputpattern>[AVN|]+)->(?<outputpattern>[AVN|]+)\s+(?<description>.*)$
 
           filters.add(new Filter(
-                  m.group("timelinesupport").equals("T"),
-                  m.group("slicethreading").equals("S"),
-                  m.group("commandsupport").equals("C"),
+                  "T".equals(m.group("timelinesupport")),
+                  "S".equals(m.group("slicethreading")),
+                  "C".equals(m.group("commandsupport")),
                   m.group("name"),
                   new FilterPattern(m.group("inputpattern")),
                   new FilterPattern(m.group("outputpattern")),

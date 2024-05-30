@@ -86,7 +86,7 @@ public final class FFmpegUtils {
   public static long fromTimecode(String time) {
     checkNotEmpty(time, "time must not be empty string");
 
-    if (time.equals("N/A")) {
+    if ("N/A".equals(time)) {
       return -1;
     }
 

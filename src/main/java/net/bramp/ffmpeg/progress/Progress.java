@@ -150,7 +150,7 @@ public class Progress {
         return false;
 
       case "bitrate":
-        if (value.equals("N/A")) {
+        if ("N/A".equals(value)) {
           bitrate = -1;
         } else {
           bitrate = FFmpegUtils.parseBitrate(value);
@@ -158,7 +158,7 @@ public class Progress {
         return false;
 
       case "total_size":
-        if (value.equals("N/A")) {
+        if ("N/A".equals(value)) {
           total_size = -1;
         } else {
           total_size = Long.parseLong(value);
@@ -188,7 +188,7 @@ public class Progress {
         return false;
 
       case "speed":
-        if (value.equals("N/A")) {
+        if ("N/A".equals(value)) {
           speed = -1;
         } else {
           speed = Float.parseFloat(value.replace("x", ""));
