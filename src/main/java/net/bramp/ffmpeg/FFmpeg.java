@@ -4,6 +4,7 @@ import static com.google.common.base.MoreObjects.firstNonNull;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -136,7 +137,7 @@ public class FFmpeg extends FFcommon {
       try {
         BufferedReader r = wrapInReader(p);
         String line;
-        while ((line = r.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(r, 5_000_000)) != null) {
           Matcher m = CODECS_REGEX.matcher(line);
           if (!m.matches()) continue;
 
@@ -163,7 +164,7 @@ public class FFmpeg extends FFcommon {
       try {
         BufferedReader r = wrapInReader(p);
         String line;
-        while ((line = r.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(r, 5_000_000)) != null) {
           Matcher m = FILTERS_REGEX.matcher(line);
           if (!m.matches()) continue;
 
@@ -200,7 +201,7 @@ public class FFmpeg extends FFcommon {
       try {
         BufferedReader r = wrapInReader(p);
         String line;
-        while ((line = r.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(r, 5_000_000)) != null) {
           Matcher m = FORMATS_REGEX.matcher(line);
           if (!m.matches()) continue;
 
@@ -226,7 +227,7 @@ public class FFmpeg extends FFcommon {
       try {
         BufferedReader r = wrapInReader(p);
         String line;
-        while ((line = r.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(r, 5_000_000)) != null) {
           Matcher m = PIXEL_FORMATS_REGEX.matcher(line);
           if (!m.matches()) continue;
           String flags = m.group(1);
