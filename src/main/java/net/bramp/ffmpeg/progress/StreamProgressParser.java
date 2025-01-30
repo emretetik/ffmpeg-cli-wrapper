@@ -3,6 +3,7 @@ package net.bramp.ffmpeg.progress;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Charsets;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +38,7 @@ public class StreamProgressParser {
 
     String line;
     Progress p = new Progress();
-    while ((line = in.readLine()) != null) {
+    while ((line = BoundedLineReader.readLine(in, 5_000_000)) != null) {
       if (p.parseLine(line)) {
         listener.progress(p);
         p = new Progress();

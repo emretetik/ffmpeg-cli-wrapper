@@ -1,5 +1,6 @@
 package net.bramp.ffmpeg.info;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
@@ -19,7 +20,7 @@ public final class InfoParser {
         boolean parsingIndividualChannels = false;
         boolean parsingChannelLayouts = false;
 
-        while ((line = r.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(r, 5_000_000)) != null) {
             if (line.startsWith("NAME") || line.isEmpty()) {
                 // Skip header and empty lines
                 continue;
