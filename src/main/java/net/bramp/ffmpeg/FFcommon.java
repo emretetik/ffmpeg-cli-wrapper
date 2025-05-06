@@ -6,6 +6,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.CharStreams;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -90,7 +91,7 @@ abstract class FFcommon {
       Process p = runFunc.run(ImmutableList.of(path, "-version"));
       try {
         BufferedReader r = wrapInReader(p);
-        this.version = r.readLine();
+        this.version = BoundedLineReader.readLine(r, 5_000_000);
         CharStreams.copy(r, CharStreams.nullWriter()); // Throw away rest of the output
 
         throwOnError(p);
